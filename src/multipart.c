@@ -86,7 +86,6 @@ int webcfg_http_request(char **configData, int r_count, char* doc, int status, l
 	char *interface = NULL;
 	char *ct = NULL;
 	char *webConfigURL = NULL;
-	int len=0;
 	char *transID = NULL;
 
 	int content_res=0;
@@ -113,8 +112,8 @@ int webcfg_http_request(char **configData, int r_count, char* doc, int status, l
 			*transaction_id = strdup(transID);
 			WEBCFG_FREE(transID);
 		}
-		WebConfigLog("webConfigURL readFromFile\n");
-		readFromFile(WEBCFG_URL_FILE, &webConfigURL, &len );
+		WebConfigLog("webConfigURL loadInitURLFromFile\n");
+		loadInitURLFromFile(&webConfigURL);
 
 		//Update query param in the URL based on the doc name for force sync
 		if (doc != NULL)
@@ -139,8 +138,8 @@ int webcfg_http_request(char **configData, int r_count, char* doc, int status, l
 		WebConfigLog("fetching interface from device.properties\n");
 		if(strlen(g_interface) == 0)
 		{
-			//get_webCfg_interface(&interface);
-			interface = strdup("erouter0"); //check here.
+			get_webCfg_interface(&interface);
+			//interface = strdup("erouter0"); //check here.
 			if(interface !=NULL)
 		        {
 		               strncpy(g_interface, interface, sizeof(g_interface)-1);

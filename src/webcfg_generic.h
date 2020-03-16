@@ -33,7 +33,8 @@
 /*----------------------------------------------------------------------------*/
 /* return logger file name */
 const char *fetch_generic_file(void);
-void _get_webCfg_interface(char **interface);
+void get_webCfg_interface(char **interface);
+void loadInitURLFromFile(char **url);
 int _getConfigVersion(int index, char **version);
 bool _getConfigURL(int index, char **url);
 bool _getRequestTimeStamp(int index,char **RequestTimeStamp);
